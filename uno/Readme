@@ -1,0 +1,68 @@
+# Tracker de Entrenamiento y Suplementación Diaria
+
+Un sistema web clásico desarrollado con Django (Server-Side Rendering) y Bootstrap para el registro y gestión de rutinas físicas (Pesas/Hipertrofia, MMA, Descanso) y el control de la suplementación diaria.
+
+## Prerrequisitos
+
+Antes de iniciar, asegúrate de tener instalado:
+- Python 3.10 o superior
+- Git
+
+---
+
+## Instrucciones para Levantar el Proyecto Localmente
+
+Sigue estos pasos detallados para configurar el entorno y ejecutar la aplicación en tu máquina:
+
+### 1. Clonar el repositorio
+Descarga el proyecto a tu máquina local mediante Git:
+```bash
+git clone [https://github.com/TU_USUARIO/TU_REPOSITORIO.git](https://github.com/TU_USUARIO/TU_REPOSITORIO.git)
+cd TU_REPOSITORIO
+2. Crear y activar el entorno virtual
+Es necesario aislar las dependencias del proyecto en un entorno virtual:
+
+En Linux/macOS:
+
+Bash
+python -m venv venv
+source venv/bin/activate
+En Windows (Command Prompt / PowerShell):
+
+Bash
+python -m venv venv
+.\venv\Scripts\activate
+3. Instalar las dependencias
+Con el entorno virtual activado, instala los paquetes requeridos utilizando el archivo requirements.txt:
+
+Bash
+pip install -r requirements.txt
+4. Ejecutar las migraciones de la Base de Datos
+Crea la base de datos local SQLite y genera la estructura de tablas necesaria para la aplicación:
+
+Bash
+python manage.py makemigrations
+python manage.py migrate
+5. Crear un superusuario (Opcional)
+Si deseas acceder al panel de administración de Django (/admin), crea una cuenta de administrador ejecutando:
+
+Bash
+python manage.py createsuperuser
+Sigue las instrucciones en la terminal para definir tu usuario, correo y contraseña.
+
+6. Iniciar el servidor de desarrollo
+Finalmente, enciende el servidor local de Django:
+
+Bash
+python manage.py runserver
+Abre tu navegador web e ingresa a la siguiente dirección:
+👉 http://127.0.0.1:8000/
+
+Estructura de Rutas de la Aplicación
+http://127.0.0.1:8000/ - Vista principal: Listado de entrenamientos registrados.
+
+http://127.0.0.1:8000/nuevo/ - Formulario de creación de un nuevo registro físico.
+
+http://127.0.0.1:8000/editar/<id>/ - Formulario de edición para registros existentes.
+
+Cualquier ruta no registrada redirige automáticamente a la raíz / mediante un manejador personalizado de errores 404.
