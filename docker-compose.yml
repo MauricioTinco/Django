@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: tracker_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=tracker_db
+      - POSTGRES_USER=tracker_user
+      - POSTGRES_PASSWORD=tracker_password
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    container_name: tracker_web
+    restart: always
+    volumes:
+      - ./uno:/app  # 👈 CORREGIDO: Mapea la carpeta del proyecto directo a /app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - DB_HOST=db
+      - DB_NAME=tracker_db
+      - DB_USER=tracker_user
+      - DB_PASSWORD=tracker_password
+      - DB_PORT=5432
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
